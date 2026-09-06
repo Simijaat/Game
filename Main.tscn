@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://pinsceneid123" path="res://Pin.tscn" id="1_pin"]
 [ext_resource type="PackedScene" uid="uid://beamsceneid123" path="res://Beam.tscn" id="2_beam"]
+[ext_resource type="Script" path="res://CombatView.gd" id="3_combatview"]
+[ext_resource type="PackedScene" uid="uid://hero1234567" path="res://Hero.tscn" id="4_hero"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -25,6 +27,10 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
 color = Color(0.2, 0.2, 0.2, 1)
+script = ExtResource("3_combatview")
+
+[node name="Hero" parent="VBoxContainer/CombatView" instance=ExtResource("4_hero")]
+position = Vector2(180, 256)
 
 [node name="PuzzleBoard" type="ColorRect" parent="VBoxContainer"]
 layout_mode = 2
