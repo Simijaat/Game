@@ -27,23 +27,25 @@ class MainScene extends Phaser.Scene {
         const beam = this.add.rectangle(cx, cy, beamWidth, beamHeight, 0x8B4513);
         this.matter.add.gameObject(beam, {
             isStatic: false,
-            mass: 50 // high mass so it feels heavy
+            density: 0.05, frictionAir: 0.02, restitution: 0.1
         });
 
         // 2. Create the Pins (small red circles)
         const pinRadius = 15;
         // Left pin
-        const leftPin = this.add.circle(cx - beamWidth / 2 + pinRadius, cy, pinRadius, 0xFF0000);
+        const leftPin = this.add.circle(cx - beamWidth / 2, cy, pinRadius, 0xFF0000);
         this.matter.add.gameObject(leftPin, {
             shape: { type: 'circle', radius: pinRadius },
-            isStatic: true
+            isStatic: true,
+            isSensor: true
         });
 
         // Right pin
-        const rightPin = this.add.circle(cx + beamWidth / 2 - pinRadius, cy, pinRadius, 0xFF0000);
+        const rightPin = this.add.circle(cx + beamWidth / 2, cy, pinRadius, 0xFF0000);
         this.matter.add.gameObject(rightPin, {
             shape: { type: 'circle', radius: pinRadius },
-            isStatic: true
+            isStatic: true,
+            isSensor: true
         });
 
         // Make pins interactive
@@ -55,12 +57,12 @@ class MainScene extends Phaser.Scene {
         // constraint length 0 so it acts like a pivot point
         const leftConstraint = this.matter.add.constraint(leftPin, beam, 0, 1, {
             pointA: { x: 0, y: 0 },
-            pointB: { x: -beamWidth / 2 + pinRadius, y: 0 }
+            pointB: { x: -beamWidth / 2, y: 0 }
         });
 
         const rightConstraint = this.matter.add.constraint(rightPin, beam, 0, 1, {
             pointA: { x: 0, y: 0 },
-            pointB: { x: beamWidth / 2 - pinRadius, y: 0 }
+            pointB: { x: beamWidth / 2, y: 0 }
         });
 
         // 4. Add interaction events
