@@ -24,3 +24,56 @@ body {
     height: 60vh;
     position: relative; /* Useful if Phaser creates an absolute child */
 }
+
+/* Combat UI styling */
+#combat-view {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.hero {
+    width: 60px;
+    height: 100px;
+    background-color: #0000ff; /* Blue placeholder */
+    transition: transform 0.1s ease-out;
+}
+
+.enemy-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.enemy {
+    width: 80px;
+    height: 120px;
+    background-color: #00ff00; /* Green placeholder */
+    transition: background-color 0.1s ease-out;
+}
+
+.health-bar-container {
+    width: 100px;
+    height: 10px;
+    background-color: #555;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.health-bar {
+    width: 100%;
+    height: 100%;
+    background-color: #ff0000;
+    transition: width 0.2s ease-out;
+}
+
+/* Animations/Transitions classes */
+.hero-lunge {
+    transform: translateX(30px);
+}
+
+.enemy-hit {
+    background-color: #ffcccc; /* Flashes pale red/white */
+}
