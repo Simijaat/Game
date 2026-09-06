@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden; /* Prevent scrolling */
+    width: 100vw;
+    height: 100vh;
+    background-color: #000; /* Fallback background */
+}
+
+/* 40% height for the top combat view */
+#combat-view {
+    width: 100vw;
+    height: 40vh;
+    background-color: #333; /* Dark gray placeholder */
+}
+
+/* 60% height for the bottom puzzle board */
+#puzzle-board {
+    width: 100vw;
+    height: 60vh;
+    position: relative; /* Useful if Phaser creates an absolute child */
+}
