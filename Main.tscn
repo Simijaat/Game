@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://c34p4eox3c2r"]
+[gd_scene load_steps=3 format=3 uid="uid://c34p4eox3c2r"]
+
+[ext_resource type="PackedScene" uid="uid://pinsceneid123" path="res://Pin.tscn" id="1_pin"]
+[ext_resource type="PackedScene" uid="uid://beamsceneid123" path="res://Beam.tscn" id="2_beam"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -28,3 +31,24 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="PhysicsCenter" type="Node2D" parent="VBoxContainer/PuzzleBoard"]
+position = Vector2(360, 384)
+
+[node name="Beam" parent="VBoxContainer/PuzzleBoard/PhysicsCenter" instance=ExtResource("2_beam")]
+
+[node name="PinLeft" parent="VBoxContainer/PuzzleBoard/PhysicsCenter" instance=ExtResource("1_pin")]
+position = Vector2(-120, 0)
+
+[node name="PinRight" parent="VBoxContainer/PuzzleBoard/PhysicsCenter" instance=ExtResource("1_pin")]
+position = Vector2(120, 0)
+
+[node name="PinJointLeft" type="PinJoint2D" parent="VBoxContainer/PuzzleBoard/PhysicsCenter"]
+position = Vector2(-120, 0)
+node_a = NodePath("../PinLeft")
+node_b = NodePath("../Beam")
+
+[node name="PinJointRight" type="PinJoint2D" parent="VBoxContainer/PuzzleBoard/PhysicsCenter"]
+position = Vector2(120, 0)
+node_a = NodePath("../PinRight")
+node_b = NodePath("../Beam")
